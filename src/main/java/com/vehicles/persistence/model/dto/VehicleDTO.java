@@ -1,21 +1,30 @@
 package com.vehicles.persistence.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 
 public class VehicleDTO {
 
     @Id
     private String id;
+    @NotBlank
     private String vehicle;
+    @NotNull
     private String brand;
+    @NotNull
+    private String description;
+    @NotNull
     private int year;
+    @NotNull
     private boolean sold;
 
 
-    public VehicleDTO(String id, String vehicle, String brand, int year, boolean sold) {
+    public VehicleDTO(String id, String vehicle, String brand, String description, int year, boolean sold) {
         this.id = id;
         this.vehicle = vehicle;
         this.brand = brand;
+        this.description = description;
         this.year = year;
         this.sold = sold;
     }
@@ -42,6 +51,14 @@ public class VehicleDTO {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getYear() {

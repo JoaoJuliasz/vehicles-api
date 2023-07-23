@@ -13,6 +13,7 @@ public class Vehicle {
     private String id;
     private String vehicle;
     private String brand;
+    private String description;
     private int year;
     private boolean sold;
     private LocalDate created;
@@ -22,27 +23,22 @@ public class Vehicle {
 
     }
 
-    public Vehicle(String id, String vehicle, String brand, int year, boolean sold, LocalDate created, LocalDate updated) {
+    public Vehicle(String id, String vehicle, String brand, String description, int year, boolean sold, LocalDate created, LocalDate updated) {
         this.id = id;
         this.vehicle = vehicle;
         this.brand = brand;
+        this.description = description;
         this.year = year;
         this.sold = sold;
         this.created = created;
         this.updated = updated;
     }
 
-//    public Vehicle( String vehicle, String brand, int year, boolean sold, LocalDate created, LocalDate updated) {
-//        this.vehicle = vehicle;
-//        this.brand = brand;
-//        this.year = year;
-//        this.sold = sold;
-//        this.created = created;
-//        this.updated = updated;
-//    }
-
     public Vehicle(VehicleDTO vehicleDTO, LocalDate created, LocalDate updated) {
-        this(vehicleDTO.getId(), vehicleDTO.getVehicle(), vehicleDTO.getBrand(), vehicleDTO.getYear(), vehicleDTO.isSold(), created, updated);
+        this(vehicleDTO.getId(),
+                vehicleDTO.getVehicle(),
+                vehicleDTO.getBrand(), vehicleDTO.getDescription(),
+                vehicleDTO.getYear(), vehicleDTO.isSold(), created, updated);
     }
 
     public String getId() {
@@ -67,6 +63,14 @@ public class Vehicle {
 
     public void setBrand(String brand) {
         this.brand = brand;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getYear() {
