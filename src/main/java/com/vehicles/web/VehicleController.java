@@ -51,6 +51,15 @@ public class VehicleController {
         return vehicleService.updateVehicle(id, updatedVehicle);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public Map<String, String> removeVehicle(@PathVariable("id") String id) {
+        vehicleService.deleteVehicle(id);
+        Map deleteSuccess = new HashMap<>() {{
+            put("message", "Vehicle removed!");
+        }};
+        return deleteSuccess;
+    }
+
     private static <T> Map<String, List<T>> convertToResponse(List<T> foundVehicles) {
         Map<String, List<T>> response = new HashMap<>() {{
             put("content", foundVehicles);

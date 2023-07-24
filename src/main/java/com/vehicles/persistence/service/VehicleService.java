@@ -36,4 +36,11 @@ public class VehicleService implements IVehicleService {
         vehicleToUpdate.update(updatedVehicle);
         return vehicleRepository.save(vehicleToUpdate);
     }
+
+    public void deleteVehicle(String id) {
+        if (!vehicleRepository.existsById(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle with id '" + id + "' not found");
+        }
+            vehicleRepository.deleteById(id);
+    }
 }
