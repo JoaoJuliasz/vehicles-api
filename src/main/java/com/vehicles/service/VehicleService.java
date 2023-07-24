@@ -23,7 +23,8 @@ public class VehicleService implements IVehicleService {
 
     public Vehicle findVehicle(String id) {
         return vehicleRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle with id '" + id + "' not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                        "Vehicle with id '" + id + "' not found"));
     }
 
     public List<Vehicle> findVehiclesByQuery(String query) {
@@ -45,6 +46,6 @@ public class VehicleService implements IVehicleService {
         if (!vehicleRepository.existsById(id)) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle with id '" + id + "' not found");
         }
-            vehicleRepository.deleteById(id);
+        vehicleRepository.deleteById(id);
     }
 }
