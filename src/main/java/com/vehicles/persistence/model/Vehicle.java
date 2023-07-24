@@ -105,7 +105,7 @@ public class Vehicle {
         this.updated = updated;
     }
 
-    public void update(Vehicle updatedVehicle) {
+    public void update(VehicleDTO updatedVehicle) {
         this.setVehicle(updatedVehicle.getVehicle());
         this.setBrand(updatedVehicle.getBrand());
         this.setDescription(updatedVehicle.getDescription());

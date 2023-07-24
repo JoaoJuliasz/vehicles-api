@@ -2,7 +2,7 @@ package com.vehicles.web;
 
 import com.vehicles.persistence.model.Vehicle;
 import com.vehicles.persistence.model.dto.VehicleDTO;
-import com.vehicles.persistence.service.VehicleService;
+import com.vehicles.service.VehicleService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -32,9 +32,14 @@ public class VehicleController {
     @GetMapping(value = "/{id}")
     public Vehicle findVehicle(@PathVariable("id") String id) {
         Vehicle foundVehicle = vehicleService.findVehicle(id);
-//        return new ResponseEntity<Vehicle>(foundVehicle, HttpStatus.OK);
         return foundVehicle;
 
+    }
+
+    @GetMapping(value = "/find")
+    public Map<String, List<Vehicle>> findAllByQuery(@RequestParam String query) {
+        List<Vehicle> foundVehicles = vehicleService.findVehiclesByQuery(query);
+        return convertToResponse(foundVehicles);
     }
 
     @PostMapping
@@ -47,7 +52,7 @@ public class VehicleController {
     }
 
     @PutMapping(value = "/{id}")
-    public Vehicle updateVehucle(@PathVariable("id") String id, @RequestBody Vehicle updatedVehicle) {
+    public Vehicle updateVehucle(@PathVariable("id") String id, @Valid @RequestBody VehicleDTO updatedVehicle) {
         return vehicleService.updateVehicle(id, updatedVehicle);
     }
 

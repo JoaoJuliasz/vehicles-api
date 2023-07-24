@@ -1,4 +1,4 @@
-package com.vehicles.persistence.service;
+package com.vehicles.service;
 
 import com.vehicles.persistence.model.Vehicle;
 import com.vehicles.persistence.model.dto.VehicleDTO;
@@ -26,12 +26,16 @@ public class VehicleService implements IVehicleService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle with id '" + id + "' not found"));
     }
 
+    public List<Vehicle> findVehiclesByQuery(String query) {
+        return vehicleRepository.findVehiclesByQuery(query);
+    }
+
     public Vehicle createVehicle(VehicleDTO newVehicle) {
         Vehicle vehicle = new Vehicle(newVehicle, LocalDate.now(), LocalDate.now());
         return vehicleRepository.insert(vehicle);
     }
 
-    public Vehicle updateVehicle(String id, Vehicle updatedVehicle) {
+    public Vehicle updateVehicle(String id, VehicleDTO updatedVehicle) {
         Vehicle vehicleToUpdate = findVehicle(id);
         vehicleToUpdate.update(updatedVehicle);
         return vehicleRepository.save(vehicleToUpdate);
