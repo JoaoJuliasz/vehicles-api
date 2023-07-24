@@ -26,9 +26,14 @@ public class VehicleService implements IVehicleService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Vehicle with id '" + id + "' not found"));
     }
 
-    @Override
     public Vehicle createVehicle(VehicleDTO newVehicle) {
         Vehicle vehicle = new Vehicle(newVehicle, LocalDate.now(), LocalDate.now());
         return vehicleRepository.insert(vehicle);
+    }
+
+    public Vehicle updateVehicle(String id, Vehicle updatedVehicle) {
+        Vehicle vehicleToUpdate = findVehicle(id);
+        vehicleToUpdate.update(updatedVehicle);
+        return vehicleRepository.save(vehicleToUpdate);
     }
 }

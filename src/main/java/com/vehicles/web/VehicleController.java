@@ -39,11 +39,16 @@ public class VehicleController {
 
     @PostMapping
     public Vehicle insertVehicle(@Valid @RequestBody VehicleDTO vehicle, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             String message = "Validation failed: " + bindingResult.getFieldErrors();
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
         }
         return vehicleService.createVehicle(vehicle);
+    }
+
+    @PutMapping(value = "/{id}")
+    public Vehicle updateVehucle(@PathVariable("id") String id, @RequestBody Vehicle updatedVehicle) {
+        return vehicleService.updateVehicle(id, updatedVehicle);
     }
 
     private static <T> Map<String, List<T>> convertToResponse(List<T> foundVehicles) {

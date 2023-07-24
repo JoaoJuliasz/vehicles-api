@@ -13,4 +13,5 @@ public interface IVehicleService {
 
     Vehicle createVehicle(VehicleDTO newVehicle);
 
+    Vehicle updateVehicle(String id, Vehicle updatedVehicle);
 }

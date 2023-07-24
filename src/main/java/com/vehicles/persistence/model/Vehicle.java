@@ -104,4 +104,13 @@ public class Vehicle {
     public void setUpdated(LocalDate updated) {
         this.updated = updated;
     }
+
+    public void update(Vehicle updatedVehicle) {
+        this.setVehicle(updatedVehicle.getVehicle());
+        this.setBrand(updatedVehicle.getBrand());
+        this.setDescription(updatedVehicle.getDescription());
+        this.setYear(updatedVehicle.getYear());
+        this.setSold(updatedVehicle.isSold());
+        this.setUpdated(LocalDate.now());
+    }
 }
