@@ -13,7 +13,6 @@ public interface IVehicleRepository extends MongoRepository<Vehicle, String> {
 
     Vehicle insert(Vehicle vehicle);
 
-//    Vehicle findVehicle(String id);
 //
 //    List<Vehicle> queryVehicles(String query);
 //

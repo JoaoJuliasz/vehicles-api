@@ -4,7 +4,10 @@ import com.vehicles.persistence.model.Vehicle;
 import com.vehicles.persistence.model.dto.VehicleDTO;
 import com.vehicles.persistence.service.VehicleService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,8 +29,20 @@ public class VehicleController {
         return convertToResponse(foundVehicles);
     }
 
+    @GetMapping(value = "/{id}")
+    public Vehicle findVehicle(@PathVariable("id") String id) {
+        Vehicle foundVehicle = vehicleService.findVehicle(id);
+//        return new ResponseEntity<Vehicle>(foundVehicle, HttpStatus.OK);
+        return foundVehicle;
+
+    }
+
     @PostMapping
-    public Vehicle insertVehicle(@Valid @RequestBody VehicleDTO vehicle) {
+    public Vehicle insertVehicle(@Valid @RequestBody VehicleDTO vehicle, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            String message = "Validation failed: " + bindingResult.getFieldErrors();
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, message);
+        }
         return vehicleService.createVehicle(vehicle);
     }
 

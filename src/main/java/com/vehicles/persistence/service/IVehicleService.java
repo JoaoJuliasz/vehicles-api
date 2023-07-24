@@ -9,6 +9,8 @@ public interface IVehicleService {
 
     List<Vehicle> findAll();
 
+    Vehicle findVehicle(String id);
+
     Vehicle createVehicle(VehicleDTO newVehicle);
 
 }

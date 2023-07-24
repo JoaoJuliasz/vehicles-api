@@ -1,6 +1,5 @@
 package com.vehicles.persistence.model.dto;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 
@@ -8,15 +7,15 @@ public class VehicleDTO {
 
     @Id
     private String id;
-    @NotBlank
+    @NotNull(message = "vehicle is required")
     private String vehicle;
-    @NotNull
+    @NotNull(message = "brand is required")
     private String brand;
-    @NotNull
+    @NotNull(message = "description is required")
     private String description;
-    @NotNull
+    @NotNull(message = "year is required")
     private int year;
-    @NotNull
+    @NotNull(message = "sold is required")
     private boolean sold;
 
 
